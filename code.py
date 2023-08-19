@@ -79,7 +79,7 @@ def recommendations(user_index, num_of_products, interactions_matrix):
 
     return recommended_products
 
-    #Defining a function based on user past interaction with the product
+    #Defining a function based on user past interaction with the products
     function collaborative_filtering_recommendation(interaction_data, user_of_interest, num_recommendations):
     # Retrieve past interactions of the user of interest
     past_interactions = get_past_interactions(interaction_data, user_of_interest)
