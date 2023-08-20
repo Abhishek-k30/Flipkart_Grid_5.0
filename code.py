@@ -1,3 +1,19 @@
+import warnings
+warnings.filterwarnings('ignore')
+
+import numpy as np
+import pandas as pd
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+from sklearn.metrics.pairwise import cosine_similarity
+
+from sklearn.metrics import mean_squared_error
+
+from scipy.sparse.linalg import svds # for sparse matrices
+
+#-----------------------------------------------------------------------------------------------------------------------------#
 # defining a function to get similar users
 def similar_users(user_index, interactions_matrix):
     similarity = []
@@ -18,10 +34,11 @@ def similar_users(user_index, interactions_matrix):
     similarity_score.remove(similarity_score[0])
        
     return most_similar_users, similarity_score
+#-----------------------------------------------------------------------------------------------------------------------------#
 
-    
 
-    # defining the recommendations function to get recommendations by using the similar users' preferences
+#-----------------------------------------------------------------------------------------------------------------------------#
+# defining the recommendations function to get recommendations by using the similar users' preferences
 def recommendations(user_index, num_of_products, interactions_matrix):
     
     #Saving similar users using the function similar_users defined above
@@ -43,8 +60,10 @@ def recommendations(user_index, num_of_products, interactions_matrix):
             break
     
     return recommendations[:num_of_products]
+#-----------------------------------------------------------------------------------------------------------------------------#
 
 
+#-----------------------------------------------------------------------------------------------------------------------------#
     #defining a function for product based recommendation
     function recommend_popular_products(products, num_recommendations):
     # Calculate popularity scores for each product
@@ -58,8 +77,10 @@ def recommendations(user_index, num_of_products, interactions_matrix):
     recommended_products = sorted_products[:num_recommendations]
 
     return recommended_products
+#-----------------------------------------------------------------------------------------------------------------------------#
 
 
+#-----------------------------------------------------------------------------------------------------------------------------#
     #Defining a function for user preference based working
     function collaborative_filtering_recommendation(interaction_matrix, user_of_interest, num_recommendations, similarity_threshold):
     # Calculate user similarity scores
@@ -78,7 +99,10 @@ def recommendations(user_index, num_of_products, interactions_matrix):
     recommended_products = rank_and_recommend(predicted_rating, num_recommendations)
 
     return recommended_products
+#-----------------------------------------------------------------------------------------------------------------------------#
 
+
+#-----------------------------------------------------------------------------------------------------------------------------#
     #Defining a function based on user past interaction with the products
     function collaborative_filtering_recommendation(interaction_data, user_of_interest, num_recommendations):
     # Retrieve past interactions of the user of interest
@@ -91,5 +115,8 @@ def recommendations(user_index, num_of_products, interactions_matrix):
     recommendations = generate_recommendations(similar_users, interaction_data, past_interactions, num_recommendations)
 
     return recommendations
+
+
+ #-----------------------------------------------------------------------------------------------------------------------------#
 
 
